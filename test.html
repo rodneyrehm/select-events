@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>&lt;select&gt; events</title>
+	<style>
+	    #logger {
+
+	        height: 50%;
+	        padding: 10px;
+	        
+	        position: absolute;
+	        right: 0;
+	        bottom: 0;
+	        left: 0;
+
+	        background: #DDD;
+	        overflow: auto;
+	    }
+	    
+	    #container {
+	        padding: 10px;
+	        background: #DDD;
+	    }
+	</style>
+</head>
+<body>
+
+<h1>Triggering events while selecting an option from &lt;select&gt;</h1>
+
+<p>See the <a href="">blog post</a> for an explanation, the <a href="#">test results</a> are available, too.</p>
+
+<div id="container">
+    <select id="select">
+        <option>alpha</option>
+        <option>bravo</option>
+        <option>charlie</option>
+        <option>delta</option>
+        <option>echo</option>
+        <option>foxtrot</option>
+        <option>golf</option>
+        <option>hotel</option>
+        <option>india</option>
+        <option>juliet</option>
+    </select>
+</div>
+
+<pre id="logger"></pre>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        var container = document.getElementById('container');
+        var select = document.getElementById('select');
+        var options = select.getElementsByTagName('option');
+        var logger = document.getElementById('logger');
+        var events, event, i, lastMessage, breakerTimeout;
+        
+        function log(message) {
+            if (message === lastMessage) {
+                return;
+            }
+            lastMessage = message;
+            logger.textContent += message + "\n";
+            logger.scrollTop = logger.scrollHeight;
+        }
+        
+        function _logBreaker() {
+            log("-------------------------------");
+        }
+        
+        // poor man's throttle
+        function logBreaker() {
+            if (breakerTimeout) {
+                clearTimeout(breakerTimeout);
+            }
+            
+            breakerTimeout = setTimeout(_logBreaker, 500);
+        }
+        
+        function logEventName(event) {
+            if (event.target !== this) {
+                // we're not interested in bubbled events
+                return;
+            }
+            
+            log('#' + this.nodeName.toLowerCase() + ": " + event.type);
+            logBreaker();
+        }
+        
+        function logKeyEventName(event) {
+            if (event.target !== this) {
+                // we're not interested in bubbled events
+                return;
+            }
+            
+            log('#' + this.nodeName.toLowerCase() + ": " + event.type + " (" + event.keyCode + ")");
+            logBreaker();
+        }
+        
+        function addToOptions(event, callback) {
+            for (var i = 0, option; option = options[i]; i++) {
+                option.addEventListener(event, callback, true);
+            }
+        }
+        
+        // add mouse events
+        events = "mousedown mouseup click mouseover mouseout mouseenter mouseleave mousemove".split(" ");
+        for (i = 0, event; event = events[i]; i++) {
+            container.addEventListener(event, logEventName, true);
+            select.addEventListener(event, logEventName, true);
+            addToOptions(event, logEventName);
+        }
+        
+        // add key events
+        events = "keydown keyup keypress".split(" ");
+        for (i = 0, event; event = events[i]; i++) {
+            container.addEventListener(event, logKeyEventName, true);
+            select.addEventListener(event, logKeyEventName, true);
+            addToOptions(event, logKeyEventName);
+        }
+        
+        // add form events
+        events = "focus blur change input forminput formchange select".split(" ");
+        for (i = 0, event; event = events[i]; i++) {
+            select.addEventListener(event, logEventName, true);
+            addToOptions(event, logEventName);
+        }
+        
+        
+    }, true);
+</script>
+
+</body>
+</html>

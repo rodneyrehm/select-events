@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Event handling</title>
+</head>
+<body>
+
+<script>
+    // limit.js - throttle, debounce
+    
+    // revokable(10) 
+    //      - to kill an execution after the fact (like click click dblclick)
+    //      a bit like debounce, only without executing at the end
+    
+    // conditional()
+    //      - to prevent execution if a condition has not been met
+    
+    Function.revokable = function(func, duration) {
+        return func.revokable(duration);
+    };
+    
+    Function.prototype.revokable = function(duration) {
+        var func = this;
+        var timer;
+        
+        if (typeof duration !== 'number' || duration < 0) {
+            throw new Error("duration must be a positive integer");
+        }
+
+        var callable = function() {
+            var context = this;
+            var args = arguments;
+            
+            // kill a previous execution, a bit like debounce
+            clearTimeout(timer);
+            
+            timer = setTimeout(function() {
+                func.apply(context, args);
+            }, duration);
+        };
+        
+        callable.revoke = function() {
+            clearTimeout(timer);
+            return this;
+        };
+        
+        return callable;
+    };
+    
+    Function.conditional = function(func, duration) {
+        return func.conditional(duration);
+    };
+    
+    Function.prototype.conditional = function(initialState) {
+        var func = this;
+        var state = Boolean(initialState);
+        
+        var callable = function() {
+            var context = this;
+            var args = arguments;
+            
+            if (!state) {
+                // revert state
+                state = initialState;
+                return;
+            }
+            
+            // revert state
+            state = initialState;
+            
+            func.apply(context, args);
+        };
+        
+        callable.state = function(allow) {
+            state = Boolean(allow);
+            return this;
+        };
+        callable.allow = function() {
+            state = true;
+            return this;
+        };
+        callable.deny = function() {
+            state = false;
+            return this;
+        };
+        
+        return callable;
+    };
+    
+    
+    var test = function() {
+        console.log("foobar", this, arguments);
+    };
+    
+    
+    var revo = test.revokable(10);
+
+    revo("should not execute");
+    revo.revoke();
+    
+    revo("execute", "with args");
+    revo.call({context: "it has"}, "execute", "with context");
+    
+    
+    
+    var cTrue = test.conditional(true);
+    var cFalse = test.conditional(false);
+    
+    cTrue("execute", "with args");
+    cTrue({context: "it has"}, "execute", "with context");
+    cFalse("should not execute");
+    
+    cTrue.deny();
+    cTrue("should not execute");
+    cTrue("execute true");
+    
+    cFalse.allow();
+    cFalse("execute false");
+    cFalse("should not");
+    
+    
+</script>
+
+</body>
+</html>

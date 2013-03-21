@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>&lt;select&gt; events table</title>
+	
+	<style>
+	    table {
+	        border-collapse: collapse;
+	        border-spacing: 0;
+	    }
+	
+	    th, td {
+	        text-align: left;
+	        vertical-align: top;
+	        padding: 5px;
+	        border: 1px solid #AAA;
+	    }
+	    thead th {
+	        background: #CCC;
+	    }
+	    th {
+	        background: #DDD;
+	    }
+	    td {
+	        background: #EEE;
+	    }
+	    
+	    ul, li {
+	        margin: 0; 
+	        padding: 0;
+	        list-style: none;
+	    }
+	    
+	    .select {
+	        color: #336699;
+	    }
+	    
+	    .container {
+	        color: #669933;
+	    }
+	    
+	</style>
+	
+</head>
+<body>
+
+<h1>Events triggered while selecting an option from &lt;select&gt;</h1>
+
+<p>See the <a href="">blog post</a> for an explanation, the <a href="#">test case</a> is available, too.</p>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Firefox 19</th>
+            <th>Chrome 23</th>
+            <th>Safari 6.0.2</th>
+            <th>Opera 12.14</th>
+            <th>IE 9</th>
+            <th>IE 10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><th colspan="6">moving the cursor on top of the &lt;select&gt;</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="container">container</span>: mouseover</li>
+                <li><span class="container">container</span>: mouseenter</li>
+                <li><span class="container">container</span>: mousemove</li>
+                <li><span class="container">container</span>: mouseout</li>
+                <li><span class="select">select</span>: mouseover</li>
+                <li><span class="select">select</span>: mouseenter</li>
+                <li><span class="select">select</span>: mousemove</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="container"> container </span>: mouseover</li>
+                <li><span class="container"> container </span>: mousemove</li>
+                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="select">select</span>: mouseover</li>
+                <li><span class="select">select</span>: mousemove</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="container"> container </span>: mouseover</li>
+                <li><span class="container"> container </span>: mousemove</li>
+                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="select">select</span>: mouseover</li>
+                <li><span class="select">select</span>: mousemove</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="container"> container </span>: mouseenter</li>
+                <li><span class="container"> container </span>: mouseover</li>
+                <li><span class="container"> container </span>: mousemove</li>
+                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="select">select</span>: mouseenter</li>
+                <li><span class="select">select</span>: mouseover</li>
+                <li><span class="select">select</span>: mousemove</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="container"> container </span>: mousemove</li>
+                <li><span class="container"> container </span>: mouseover</li>
+                <li><span class="container"> container </span>: mouseenter</li>
+                <li><span class="container"> container </span>: mousemove</li>
+                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="select">select</span>: mousemove</li>
+                <li><span class="select">select</span>: mouseover</li>
+                <li><span class="select">select</span>: mouseenter</li>
+                <li><span class="select">select</span>: mousemove</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="container"> container </span>: mousemove</li>
+                <li><span class="container"> container </span>: mouseover</li>
+                <li><span class="container"> container </span>: mouseenter</li>
+                <li><span class="container"> container </span>: mousemove</li>
+                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="select">select</span>: mousemove</li>
+                <li><span class="select">select</span>: mouseover</li>
+                <li><span class="select">select</span>: mouseenter</li>
+                <li><span class="select">select</span>: mousemove</li>
+            </ul></td>
+        </tr>
+
+        <tr><th colspan="6">clicking to see the list of options</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: mousedown</li>
+                <li><span class="select">select</span>: focus</li>
+                <li><span class="select">select</span>: mouseup</li>
+                <li><span class="select">select</span>: click</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: mousedown</li>
+                <li><span class="select">select</span>: focus</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: mousedown</li>
+                <li><span class="select">select</span>: focus</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: mousedown</li>
+                <li><span class="select">select</span>: focus</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: mousedown</li>
+                <li><span class="select">select</span>: focus</li>
+                <li><span class="select">select</span>: mousemove</li>
+                <li><span class="select">select</span>: mouseup</li>
+                <li><span class="select">select</span>: click</li>
+                <li><span class="select">select</span>: mousemove</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: mousedown</li>
+                <li><span class="select">select</span>: focus</li>
+                <li><span class="select">select</span>: mouseup</li>
+                <li><span class="select">select</span>: click</li>
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">moving cursor on top of the 4th option "delta"</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: mouseout</li>
+                <li><span class="select">select</span>: mouseleave</li>
+                <li><span class="container"> container </span>: mouseleave</li>
+                <li><span class="container"> container </span>: mouseenter</li>
+                <li><span class="select">select</span>: mouseenter</li>
+            </ul></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><ul>
+                <li><span class="select">select</span>: mousemove</li>
+                <li><span class="select">select</span>: mouseout</li>
+                <li><span class="select">select</span>: mouseleave</li>
+                <li><span class="container"> container </span>: mouseleave</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: mouseout</li>
+                <li><span class="select">select</span>: mouseleave</li>
+                <li><span class="container"> container </span>: mouseleave</li>
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">clicking to select the 4th option "delta"</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: change</li>
+                <li><span class="select">select</span>: mouseleave</li>
+                <li><span class="container"> container </span>: mouseleave</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: change</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: change</li>
+                <li><span class="select">select</span>: mouseout</li>
+                <li><span class="select">select</span>: mouseup</li>
+                <li><span class="select">select</span>: mouseover</li>
+                <li><span class="select">select</span>: click</li>
+                <li><span class="select">select</span>: mouseout</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: input</li>
+                <li><span class="select">select</span>: change</li>
+                <li><span class="select">select</span>: mouseup</li>
+                <li><span class="select">select</span>: click</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: mousedown</li>
+                <li><span class="select">select</span>: mouseup</li>
+                <li><span class="select">select</span>: change</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: mousedown</li>
+                <li><span class="select">select</span>: mouseup</li>
+                <li><span class="select">select</span>: change</li>
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">slight mouse move once options list closed</th></tr>
+        <tr>
+            <td></td>
+            <td><ul>
+                <li><span class="select">select</span>: mouseout</li>
+            </ul></td>
+            <td></td>
+            <td><ul>
+                <li><span class="select">select</span>: mouseout</li>
+                <li><span class="select">select</span>: mouseleave</li>
+                <li><span class="container"> container </span>: mouseleave</li>
+            </ul></td>
+            <td></td>
+            <td></td>
+        </tr>
+        
+        <tr><th colspan="6">click on document to lose focus</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: blur</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: blur</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: blur</li>                
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: blur</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: blur</li>                
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: blur</li>
+            </ul></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+</html>
