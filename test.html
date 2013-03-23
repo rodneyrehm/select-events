@@ -22,6 +22,12 @@
 	        padding: 10px;
 	        background: #DDD;
 	    }
+	    
+	    #make-html {
+	        position: absolute;
+	        bottom: 20px;
+	        right: 10px;
+	    }
 	</style>
 </head>
 <body>
@@ -46,6 +52,7 @@
 </div>
 
 <pre id="logger"></pre>
+<button type="button" id="make-html">HTML</button>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -54,7 +61,22 @@
         var select = document.getElementById('select');
         var options = select.getElementsByTagName('option');
         var logger = document.getElementById('logger');
+        var makeHtml = document.getElementById('make-html');
         var events, event, i, lastMessage, breakerTimeout;
+        
+        makeHtml.addEventListener("click", function() {
+            var text = logger.textContent;
+            
+            text = text.replace(/#([a-z]+): ([a-z]+)( \(([^\)]+)\))?\n/gi, function(match, elementName, eventName, note, noteValue) {
+                return '<li>'
+                    + '<span class="' + elementName + '">' + elementName + '</span>: '
+                    + '<span class="event ' + eventName + '">' + eventName + '</span>' 
+                    + (noteValue ? (' <span class="note">' + noteValue + '</span>') : '') 
+                    + '</li>\n';
+            });
+            
+            logger.textContent = text;
+        }, false);
         
         function log(message) {
             if (message === lastMessage) {
@@ -79,22 +101,35 @@
         }
         
         function logEventName(event) {
-            if (event.target !== this) {
-                // we're not interested in bubbled events
+            if (event.eventPhase !== 2) {
+                // we're only interested in AT_TARGET events
                 return;
             }
             
-            log('#' + this.nodeName.toLowerCase() + ": " + event.type);
+            var note = '';
+            if (this.nodeName.toLowerCase() === 'option') {
+                note = " (option: " + this.textContent + ")";
+            }
+                        
+            log('#' + this.nodeName.toLowerCase() + ": " + event.type + note);
             logBreaker();
         }
         
         function logKeyEventName(event) {
-            if (event.target !== this) {
-                // we're not interested in bubbled events
+            if (event.eventPhase !== 2) {
+                // we're only interested in AT_TARGET events
                 return;
             }
+
+            var note = [];
+            if (this.nodeName.toLowerCase() === 'option') {
+                note.push("option: " + this.textContent);
+            }
             
-            log('#' + this.nodeName.toLowerCase() + ": " + event.type + " (" + event.keyCode + ")");
+            note.push('key: ' + event.keyCode);
+            note = ' (' + note.join(', ') + ')';
+            
+            log('#' + this.nodeName.toLowerCase() + ": " + event.type + note);
             logBreaker();
         }
         
