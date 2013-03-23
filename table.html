@@ -33,12 +33,20 @@
 	        list-style: none;
 	    }
 	    
+	    .div {
+	        color: #669933;
+	    }
+	    
 	    .select {
 	        color: #336699;
 	    }
 	    
-	    .container {
-	        color: #669933;
+	    .option {
+	        color: #663399;
+	    }
+	    
+	    .note {
+	        font-style: italic;
 	    }
 	    
 	</style>
@@ -50,7 +58,520 @@
 
 <p>See the <a href="">blog post</a> for an explanation, the <a href="#">test case</a> is available, too.</p>
 
+<hr>
 
+<p>For context the <code>&lt;select&gt;</code> was placed in a <code>&lt;div&gt;</code> that is just a tiny bit larger. We're interested only in the events' <code>originalTarget</code>, so the table below won't show any bubbled events.</p>
+
+<hr>
+
+<h2>Mouse Events</h2>
+
+<p>The following table shows the sequence of events triggered for selecting an option using only the mouse.</p>
+
+<h3>Case 1: Click to open <code>&lt;select&gt;</code></h3>
+<table>
+    <thead>
+        <tr>
+            <th>Firefox 19</th>
+            <th>Chrome 25</th>
+            <th>Safari 6.0.2</th>
+            <th>Opera 12.14</th>
+            <th>IE 9</th>
+            <th>IE 10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><th colspan="6">moving the cursor on top of the &lt;select&gt;</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="div">div</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="div">div</span>: <span class="event mouseenter">mouseenter</span></li>
+                <li><span class="div">div</span>: <span class="event mousemove">mousemove</span></li>
+                <li><span class="div">div</span>: <span class="event mouseout">mouseout</span></li>
+                <li><span class="select">select</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="select">select</span>: <span class="event mouseenter">mouseenter</span></li>
+                <li><span class="select">select</span>: <span class="event mousemove">mousemove</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="div">div</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="div">div</span>: <span class="event mousemove">mousemove</span></li>
+                <li><span class="div">div</span>: <span class="event mouseout">mouseout</span></li>
+                <li><span class="select">select</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="select">select</span>: <span class="event mousemove">mousemove</span></li>
+            </ul></td>
+            <td><ul>
+                
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">clicking to see the list of options</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event mousedown">mousedown</span></li>
+                <li><span class="select">select</span>: <span class="event focus">focus</span></li>
+                <li><span class="select">select</span>: <span class="event mouseup">mouseup</span></li>
+                <li><span class="select">select</span>: <span class="event click">click</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event mousedown">mousedown</span></li>
+                <li><span class="select">select</span>: <span class="event focus">focus</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">moving cursor on top of the 4th option "delta"</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event mousemove">mousemove</span></li>
+                <li><span class="select">select</span>: <span class="event mouseout">mouseout</span></li>
+                <li><span class="select">select</span>: <span class="event mouseleave">mouseleave</span></li>
+                <li><span class="div">div</span>: <span class="event mouseleave">mouseleave</span></li>
+                <li><span class="select">select</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="div">div</span>: <span class="event mouseenter">mouseenter</span></li>
+                <li><span class="select">select</span>: <span class="event mouseenter">mouseenter</span></li>
+                <li><span class="select">select</span>: <span class="event mouseout">mouseout</span></li>
+                <li><span class="option">option</span>: <span class="event mouseover">mouseover</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mouseenter">mouseenter</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mousemove">mousemove</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mouseout">mouseout</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mouseleave">mouseleave</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mouseover">mouseover</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mouseenter">mouseenter</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mousemove">mousemove</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mouseout">mouseout</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mouseleave">mouseleave</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mouseover">mouseover</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mouseenter">mouseenter</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mousemove">mousemove</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mouseout">mouseout</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mouseleave">mouseleave</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mouseover">mouseover</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event mouseenter">mouseenter</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event mousemove">mousemove</span> <span class="note">option: delta</span></li>
+            </ul></td>
+            <td><ul>
+                <li>--</li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">clicking to select the 4th option "delta"</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="option">option</span>: <span class="event mousedown">mousedown</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event mouseup">mouseup</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event click">click</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event mouseout">mouseout</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event mouseleave">mouseleave</span> <span class="note">option: delta</span></li>
+                <li><span class="select">select</span>: <span class="event mouseleave">mouseleave</span></li>
+                <li><span class="div">div</span>: <span class="event mouseleave">mouseleave</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event change">change</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">slight mouse move once options list closed</th></tr>
+        <tr>
+            <td><ul>
+                <li>--</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event mouseout">mouseout</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">click on document to lose focus</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event blur">blur</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event blur">blur</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Case 2: Keep mouse button pressed to open <code>&lt;select&gt;</code></h3>
+<table>
+    <thead>
+        <tr>
+            <th>Firefox 19</th>
+            <th>Chrome 25</th>
+            <th>Safari 6.0.2</th>
+            <th>Opera 12.14</th>
+            <th>IE 9</th>
+            <th>IE 10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><th colspan="6">moving the cursor on top of the &lt;select&gt;</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="div">div</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="div">div</span>: <span class="event mouseenter">mouseenter</span></li>
+                <li><span class="div">div</span>: <span class="event mousemove">mousemove</span></li>
+                <li><span class="div">div</span>: <span class="event mouseout">mouseout</span></li>
+                <li><span class="select">select</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="select">select</span>: <span class="event mouseenter">mouseenter</span></li>
+                <li><span class="select">select</span>: <span class="event mousemove">mousemove</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="div">div</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="div">div</span>: <span class="event mousemove">mousemove</span></li>
+                <li><span class="div">div</span>: <span class="event mouseout">mouseout</span></li>
+                <li><span class="select">select</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="select">select</span>: <span class="event mousemove">mousemove</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">mouse down to see the list of options</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event mousedown">mousedown</span></li>
+                <li><span class="select">select</span>: <span class="event focus">focus</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event mousedown">mousedown</span></li>
+                <li><span class="select">select</span>: <span class="event focus">focus</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">moving cursor on top of the 4th option "delta"</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event mousemove">mousemove</span></li>
+                <li><span class="select">select</span>: <span class="event mouseout">mouseout</span></li>
+                <li><span class="select">select</span>: <span class="event mouseleave">mouseleave</span></li>
+                <li><span class="div">div</span>: <span class="event mouseleave">mouseleave</span></li>
+                <li><span class="select">select</span>: <span class="event mouseover">mouseover</span></li>
+                <li><span class="div">div</span>: <span class="event mouseenter">mouseenter</span></li>
+                <li><span class="select">select</span>: <span class="event mouseenter">mouseenter</span></li>
+                <li><span class="select">select</span>: <span class="event mousemove">mousemove</span></li>
+                <li><span class="select">select</span>: <span class="event mouseout">mouseout</span></li>
+                <li><span class="option">option</span>: <span class="event mouseover">mouseover</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mouseenter">mouseenter</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mousemove">mousemove</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mouseout">mouseout</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mouseleave">mouseleave</span> <span class="note">option: alpha</span></li>
+                <li><span class="option">option</span>: <span class="event mouseover">mouseover</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mouseenter">mouseenter</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mousemove">mousemove</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mouseout">mouseout</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mouseleave">mouseleave</span> <span class="note">option: bravo</span></li>
+                <li><span class="option">option</span>: <span class="event mouseover">mouseover</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mouseenter">mouseenter</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mousemove">mousemove</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mouseout">mouseout</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mouseleave">mouseleave</span> <span class="note">option: charlie</span></li>
+                <li><span class="option">option</span>: <span class="event mouseover">mouseover</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event mouseenter">mouseenter</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event mousemove">mousemove</span> <span class="note">option: delta</span></li>
+            </ul></td>
+            <td><ul>
+                <li>--</li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">mouse up to select the 4th option "delta"</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="option">option</span>: <span class="event mouseup">mouseup</span> <span class="note">option: delta</span></li>
+                <li><span class="select">select</span>: <span class="event change">change</span></li>
+                <li><span class="option">option</span>: <span class="event click">click</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event mouseout">mouseout</span> <span class="note">option: delta</span></li>
+                <li><span class="option">option</span>: <span class="event mouseleave">mouseleave</span> <span class="note">option: delta</span></li>
+                <li><span class="select">select</span>: <span class="event mouseleave">mouseleave</span></li>
+                <li><span class="div">div</span>: <span class="event mouseleave">mouseleave</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event change">change</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">slight mouse move once options list closed</th></tr>
+        <tr>
+            <td><ul>
+                <li>--</li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event mouseout">mouseout</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6">click on document to lose focus</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event blur">blur</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event blur">blur</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h2>Keyboard Events</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Firefox 19</th>
+            <th>Chrome 25</th>
+            <th>Safari 6.0.2</th>
+            <th>Opera 12.14</th>
+            <th>IE 9</th>
+            <th>IE 10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><th colspan="6"><kbd>TAB</kbd> to focus the &lt;select&gt;</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event focus">focus</span></li>
+                <li><span class="select">select</span>: <span class="event keyup">keyup</span> <span class="note">key: 9</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event focus">focus</span></li>
+                <li><span class="select">select</span>: <span class="event keyup">keyup</span> <span class="note">key: 9</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6"><kbd>Arrow Down</kbd> (repeatedly) to select the 4th option "delta"</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event keydown">keydown</span> <span class="note">key: 40</span></li>
+                <li><span class="select">select</span>: <span class="event keypress">keypress</span> <span class="note">key: 40</span></li>
+                <li><span class="select">select</span>: <span class="event keyup">keyup</span> <span class="note">key: 40</span></li>
+                <li><span class="select">select</span>: <span class="event keydown">keydown</span> <span class="note">key: 40</span></li>
+                <li><span class="select">select</span>: <span class="event keypress">keypress</span> <span class="note">key: 40</span></li>
+                <li><span class="select">select</span>: <span class="event keyup">keyup</span> <span class="note">key: 40</span></li>
+                <li><span class="select">select</span>: <span class="event keydown">keydown</span> <span class="note">key: 40</span></li>
+                <li><span class="select">select</span>: <span class="event keypress">keypress</span> <span class="note">key: 40</span></li>
+                <li><span class="select">select</span>: <span class="event keyup">keyup</span> <span class="note">key: 40</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event keydown">keydown</span> <span class="note">key: 40</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+        
+        <tr><th colspan="6"><kbd>Enter</kbd> to close options list (only done if <kbd>TAB</kbd> does not work)</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="note">not necessary</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event change">change</span></li>
+                <li><span class="select">select</span>: <span class="event keyup">keyup</span> <span class="note">key: 13</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+
+        <tr><th colspan="6"><kbd>TAB</kbd> to unfocus the &lt;select&gt;</th></tr>
+        <tr>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event keydown">keydown</span> <span class="note">key: 9</span></li>
+                <li><span class="select">select</span>: <span class="event keypress">keypress</span> <span class="note">key: 9</span></li>
+                <li><span class="select">select</span>: <span class="event change">change</span></li>
+                <li><span class="select">select</span>: <span class="event blur">blur</span></li>
+            </ul></td>
+            <td><ul>
+                <li><span class="select">select</span>: <span class="event keydown">keydown</span> <span class="note">key: 9</span></li>
+                <li><span class="select">select</span>: <span class="event blur">blur</span></li>
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+            <td><ul>
+
+            </ul></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Old table for reference</h2>
 
 <table>
     <thead>
@@ -67,54 +588,54 @@
         <tr><th colspan="6">moving the cursor on top of the &lt;select&gt;</th></tr>
         <tr>
             <td><ul>
-                <li><span class="container">container</span>: mouseover</li>
-                <li><span class="container">container</span>: mouseenter</li>
-                <li><span class="container">container</span>: mousemove</li>
-                <li><span class="container">container</span>: mouseout</li>
+                <li><span class="div">div</span>: mouseover</li>
+                <li><span class="div">div</span>: mouseenter</li>
+                <li><span class="div">div</span>: mousemove</li>
+                <li><span class="div">div</span>: mouseout</li>
                 <li><span class="select">select</span>: mouseover</li>
                 <li><span class="select">select</span>: mouseenter</li>
                 <li><span class="select">select</span>: mousemove</li>
             </ul></td>
             <td><ul>
-                <li><span class="container"> container </span>: mouseover</li>
-                <li><span class="container"> container </span>: mousemove</li>
-                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="div"> div </span>: mouseover</li>
+                <li><span class="div"> div </span>: mousemove</li>
+                <li><span class="div"> div </span>: mouseout</li>
                 <li><span class="select">select</span>: mouseover</li>
                 <li><span class="select">select</span>: mousemove</li>
             </ul></td>
             <td><ul>
-                <li><span class="container"> container </span>: mouseover</li>
-                <li><span class="container"> container </span>: mousemove</li>
-                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="div"> div </span>: mouseover</li>
+                <li><span class="div"> div </span>: mousemove</li>
+                <li><span class="div"> div </span>: mouseout</li>
                 <li><span class="select">select</span>: mouseover</li>
                 <li><span class="select">select</span>: mousemove</li>
             </ul></td>
             <td><ul>
-                <li><span class="container"> container </span>: mouseenter</li>
-                <li><span class="container"> container </span>: mouseover</li>
-                <li><span class="container"> container </span>: mousemove</li>
-                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="div"> div </span>: mouseenter</li>
+                <li><span class="div"> div </span>: mouseover</li>
+                <li><span class="div"> div </span>: mousemove</li>
+                <li><span class="div"> div </span>: mouseout</li>
                 <li><span class="select">select</span>: mouseenter</li>
                 <li><span class="select">select</span>: mouseover</li>
                 <li><span class="select">select</span>: mousemove</li>
             </ul></td>
             <td><ul>
-                <li><span class="container"> container </span>: mousemove</li>
-                <li><span class="container"> container </span>: mouseover</li>
-                <li><span class="container"> container </span>: mouseenter</li>
-                <li><span class="container"> container </span>: mousemove</li>
-                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="div"> div </span>: mousemove</li>
+                <li><span class="div"> div </span>: mouseover</li>
+                <li><span class="div"> div </span>: mouseenter</li>
+                <li><span class="div"> div </span>: mousemove</li>
+                <li><span class="div"> div </span>: mouseout</li>
                 <li><span class="select">select</span>: mousemove</li>
                 <li><span class="select">select</span>: mouseover</li>
                 <li><span class="select">select</span>: mouseenter</li>
                 <li><span class="select">select</span>: mousemove</li>
             </ul></td>
             <td><ul>
-                <li><span class="container"> container </span>: mousemove</li>
-                <li><span class="container"> container </span>: mouseover</li>
-                <li><span class="container"> container </span>: mouseenter</li>
-                <li><span class="container"> container </span>: mousemove</li>
-                <li><span class="container"> container </span>: mouseout</li>
+                <li><span class="div"> div </span>: mousemove</li>
+                <li><span class="div"> div </span>: mouseover</li>
+                <li><span class="div"> div </span>: mouseenter</li>
+                <li><span class="div"> div </span>: mousemove</li>
+                <li><span class="div"> div </span>: mouseout</li>
                 <li><span class="select">select</span>: mousemove</li>
                 <li><span class="select">select</span>: mouseover</li>
                 <li><span class="select">select</span>: mouseenter</li>
@@ -163,8 +684,8 @@
             <td><ul>
                 <li><span class="select">select</span>: mouseout</li>
                 <li><span class="select">select</span>: mouseleave</li>
-                <li><span class="container"> container </span>: mouseleave</li>
-                <li><span class="container"> container </span>: mouseenter</li>
+                <li><span class="div"> div </span>: mouseleave</li>
+                <li><span class="div"> div </span>: mouseenter</li>
                 <li><span class="select">select</span>: mouseenter</li>
             </ul></td>
             <td></td>
@@ -174,12 +695,12 @@
                 <li><span class="select">select</span>: mousemove</li>
                 <li><span class="select">select</span>: mouseout</li>
                 <li><span class="select">select</span>: mouseleave</li>
-                <li><span class="container"> container </span>: mouseleave</li>
+                <li><span class="div"> div </span>: mouseleave</li>
             </ul></td>
             <td><ul>
                 <li><span class="select">select</span>: mouseout</li>
                 <li><span class="select">select</span>: mouseleave</li>
-                <li><span class="container"> container </span>: mouseleave</li>
+                <li><span class="div"> div </span>: mouseleave</li>
             </ul></td>
         </tr>
         
@@ -188,7 +709,7 @@
             <td><ul>
                 <li><span class="select">select</span>: change</li>
                 <li><span class="select">select</span>: mouseleave</li>
-                <li><span class="container"> container </span>: mouseleave</li>
+                <li><span class="div"> div </span>: mouseleave</li>
             </ul></td>
             <td><ul>
                 <li><span class="select">select</span>: change</li>
@@ -229,7 +750,7 @@
             <td><ul>
                 <li><span class="select">select</span>: mouseout</li>
                 <li><span class="select">select</span>: mouseleave</li>
-                <li><span class="container"> container </span>: mouseleave</li>
+                <li><span class="div"> div </span>: mouseleave</li>
             </ul></td>
             <td></td>
             <td></td>
@@ -258,6 +779,7 @@
         </tr>
     </tbody>
 </table>
+
 
 
 
