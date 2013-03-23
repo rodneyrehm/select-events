@@ -139,8 +139,16 @@
             }
         }
         
-        // add mouse events
-        events = "mousedown mouseup click mouseover mouseout mouseenter mouseleave mousemove".split(" ");
+
+        events = (
+            // mouse events
+            "mousedown mouseup click mouseover mouseout mouseenter mouseleave mousemove"
+            // add events - http://en.wikipedia.org/wiki/DOM_events#Touch_events [weird to see this stuff on wikipedia]
+            + " touchstart touchend touchmove touchenter touchleave touchcancel"
+            // add pointer events - http://docs.webplatform.org/wiki/concepts/PointerEvents
+            + " pointerdown pointerup pointermove pointerover pointerout pointerenter pointerleave pointercancel"
+            + " MSPointerDown MSPointerUp MSPointerMove MSPointerOver MSPointerOut MSPointerCancel"
+        ).split(" ");
         for (i = 0, event; event = events[i]; i++) {
             container.addEventListener(event, logEventName, true);
             select.addEventListener(event, logEventName, true);
